@@ -1,5 +1,6 @@
 using BIManager.Data;
 using BIManager.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BIManager.Entities
 {
@@ -7,7 +8,7 @@ namespace BIManager.Entities
     {
         public static Usuario GetUsuario(BIManagerDataContext ctx, int id)
         {
-            return ctx.Usuarios.FirstOrDefault(x => x.Id == id) ?? throw new Exception("Usuário não encontrado");
+            return ctx.Usuarios.AsNoTracking().FirstOrDefault(x => x.Id == id) ?? throw new Exception("Usuário não encontrado");
         }
 
         public static void CreateUsuario(BIManagerDataContext ctx, Usuario usuario)
@@ -37,7 +38,7 @@ namespace BIManager.Entities
 
         public static void ListUsuario(BIManagerDataContext ctx)
         {
-            var rows = ctx.Usuarios.ToList();
+            var rows = ctx.Usuarios.AsNoTracking().ToList();
 
             foreach (var row in rows)
             {
