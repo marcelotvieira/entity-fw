@@ -10,34 +10,26 @@ namespace BIManager
         {
             using (var context = new BIManagerDataContext())
             {
-                // var usuario = new Usuario
-                // {
-                //     NomeUsuario = "Marcelo2",
-                //     Email = "contat2o@email.com",
-                //     Senha = "1234",
-                //     SenhaAleatoria = false,
-                //     CriadoEm = DateTime.Now,
-                //     AtualizadoEm = DateTime.Now,
-                // };
+                var usuario = new Usuario
+                {
+                    NomeUsuario = "Marcelo",
+                    Email = "contato@email.com",
+                    Funcao = new Funcao { Nome = "Admin", Status = true },
+                    Senha = "123",
+                    SenhaAleatoria = true,
+                };
 
-                // var usuario2 = new
-                // {
-                //     NomeUsuario = "Marcelo22222",
-                //     Email = "contat22222o@email.com",
-                //     AtualizadoEm = DateTime.Now,
-                // };
+                // UsuarioHandler.CreateUsuario(
+                //     context,
+                //     usuario
+                // );
 
-                // UsuarioHandler.CreateUsuario(context, usuario);
+                UsuarioHandler.ListUsuario(context);
 
-                // UsuarioHandler.UpdateUsuario(context, 2, usuario2);
+                var funcoes = context.Funcao.ToList();
 
-                // UsuarioHandler.ListUsuario(context);
-
-                // Console.WriteLine(UsuarioHandler.GetUsuario(context, 2).NomeUsuario);
-
-                // UsuarioHandler.DeleteUsuario(context, 2);
-
-                // UsuarioHandler.ListUsuario(context);
+                foreach (var funcao in funcoes)
+                    Console.WriteLine($"Nome: {funcao.Nome}\nStatus: {funcao.Status}");
             }
         }
 

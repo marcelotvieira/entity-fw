@@ -9,6 +9,7 @@ namespace BIManager.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<BaseDeDados> BasesDeDados { get; set; }
         public DbSet<Consulta> Consultas { get; set; }
+        public DbSet<Funcao> Funcao { get; set; }
         // public DbSet<ConsultaBaseDeDados> ConsultasBaseDeDados { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) =>

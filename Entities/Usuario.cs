@@ -8,7 +8,10 @@ namespace BIManager.Entities
     {
         public static Usuario GetUsuario(BIManagerDataContext ctx, int id)
         {
-            return ctx.Usuarios.AsNoTracking().FirstOrDefault(x => x.Id == id) ?? throw new Exception("Usuário não encontrado");
+            return ctx
+                .Usuarios
+                .AsNoTracking()
+                .FirstOrDefault(x => x.Id == id) ?? throw new Exception("Usuário não encontrado");
         }
 
         public static void CreateUsuario(BIManagerDataContext ctx, Usuario usuario)

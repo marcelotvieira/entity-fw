@@ -38,18 +38,22 @@ namespace BIManager.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProprietarioId")
-                        .HasColumnType("int");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("UrlConexao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BasesDeDados");
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("BaseDeDados");
                 });
 
             modelBuilder.Entity("BIManager.Models.Consulta", b =>
@@ -60,6 +64,14 @@ namespace BIManager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ChaveEixoXDoGrafico")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("ChaveEixoYDoGrafico")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<bool>("CompativelComPeriodo")
                         .HasColumnType("bit");
 
@@ -69,19 +81,33 @@ namespace BIManager.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("chaveEixoXDoGrafico")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("chaveEixoYDoGrafico")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Consultas");
+                    b.ToTable("Consulta");
+                });
+
+            modelBuilder.Entity("BIManager.Models.Funcao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Funcao");
                 });
 
             modelBuilder.Entity("BIManager.Models.Usuario", b =>
@@ -107,18 +133,44 @@ namespace BIManager.Migrations
 
                     b.Property<string>("NomeUsuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<bool>("SenhaAleatoria")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FuncaoId");
+
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("BIManage.Models.BaseDeDados", b =>
+                {
+                    b.HasOne("BIManager.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("BIManager.Models.Usuario", b =>
+                {
+                    b.HasOne("BIManager.Models.Funcao", "Funcao")
+                        .WithMany()
+                        .HasForeignKey("FuncaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcao");
                 });
 #pragma warning restore 612, 618
         }
