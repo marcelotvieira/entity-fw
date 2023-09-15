@@ -13,15 +13,13 @@ namespace BIManage.Models
 
         public string? UrlConexao { get; set; }
 
-        public int UsuarioId { get; set; }
-
         public Usuario? Usuario { get; set; }
 
-        public ICollection<ConsultaBaseDeDados>? Consultas { get; set; }
+        public List<Consulta>? Consultas { get; set; }
 
-        public DateTime CriadoEm { get; set; }
+        public DateTime? CriadoEm { get; set; }
 
-        public DateTime AtualizadoEm { get; set; }
+        public DateTime? AtualizadoEm { get; set; }
 
     }
 }

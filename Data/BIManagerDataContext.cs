@@ -1,4 +1,5 @@
 using BIManage.Models;
+using BIManager.Data.Mappings;
 using BIManager.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,16 @@ namespace BIManager.Data
         public DbSet<BaseDeDados> BasesDeDados { get; set; }
         public DbSet<Consulta> Consultas { get; set; }
         public DbSet<Funcao> Funcao { get; set; }
-        public DbSet<ConsultaBaseDeDados> ConsultasBaseDeDados { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) =>
             options.UseSqlServer(@"Server=localhost,1433;Database=BIManager;User ID=sa;Password=password123@;Encrypt=True;TrustServerCertificate=True");
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new ConsultaMap());
+            modelBuilder.ApplyConfiguration(new BaseDeDadosMap());
+            modelBuilder.ApplyConfiguration(new FuncaoMap());
+        }
     }
 }

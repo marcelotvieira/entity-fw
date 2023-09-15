@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BIManage.Models;
 
 namespace BIManager.Models
 {
@@ -18,7 +19,7 @@ namespace BIManager.Models
 
         public string? ChaveEixoYDoGrafico { get; set; }
 
-        public ICollection<ConsultaBaseDeDados>? BasesDeDados { get; set; }
+        public List<BaseDeDados>? BasesDeDados { get; set; }
 
         public string? ChaveEixoXDoGrafico { get; set; }
     }

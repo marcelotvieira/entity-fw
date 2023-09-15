@@ -12,6 +12,6 @@ namespace BIManager.Models
 
         public string? Nome { get; set; }
 
-        public bool Status { get; set; }
+        public List<Usuario>? Usuarios { get; set; }
     }
 }

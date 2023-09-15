@@ -17,8 +17,6 @@ namespace BIManager.Models
 
         public string? Senha { get; set; }
 
-        public int FuncaoId { get; set; }
-
         public Funcao? Funcao { get; set; }
 
         public bool SenhaAleatoria { get; set; }
