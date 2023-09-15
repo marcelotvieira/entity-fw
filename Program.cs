@@ -13,6 +13,7 @@ namespace BIManager
             using (var context = new BIManagerDataContext())
             {
 
+
                 var usuario = new Usuario
                 {
                     NomeUsuario = "Marcelo",
@@ -23,10 +24,10 @@ namespace BIManager
                     SenhaAleatoria = true,
                 };
 
-                // UsuarioHandler.CreateUsuario(
-                //     context,
-                //     usuario
-                // );
+                UsuarioHandler.CreateUsuario(
+                    context,
+                    usuario
+                );
 
                 UsuarioHandler.ListUsuario(context);
 
