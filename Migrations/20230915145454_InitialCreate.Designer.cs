@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BIManager.Migrations
 {
     [DbContext(typeof(BIManagerDataContext))]
-    [Migration("20230914181851_InitialCreate")]
+    [Migration("20230915145454_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -157,7 +157,7 @@ namespace BIManager.Migrations
             modelBuilder.Entity("BIManage.Models.BaseDeDados", b =>
                 {
                     b.HasOne("BIManager.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("BasesDeDados")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -174,6 +174,11 @@ namespace BIManager.Migrations
                         .IsRequired();
 
                     b.Navigation("Funcao");
+                });
+
+            modelBuilder.Entity("BIManager.Models.Usuario", b =>
+                {
+                    b.Navigation("BasesDeDados");
                 });
 #pragma warning restore 612, 618
         }

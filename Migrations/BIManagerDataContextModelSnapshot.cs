@@ -154,7 +154,7 @@ namespace BIManager.Migrations
             modelBuilder.Entity("BIManage.Models.BaseDeDados", b =>
                 {
                     b.HasOne("BIManager.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("BasesDeDados")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -171,6 +171,11 @@ namespace BIManager.Migrations
                         .IsRequired();
 
                     b.Navigation("Funcao");
+                });
+
+            modelBuilder.Entity("BIManager.Models.Usuario", b =>
+                {
+                    b.Navigation("BasesDeDados");
                 });
 #pragma warning restore 612, 618
         }

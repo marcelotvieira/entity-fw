@@ -41,12 +41,16 @@ namespace BIManager.Entities
 
         public static void ListUsuario(BIManagerDataContext ctx)
         {
-            var rows = ctx.Usuarios.AsNoTracking().ToList();
+            var rows = ctx
+            .Usuarios
+            .Include(x => x.Funcao)
+            .Include(x => x.BasesDeDados)
+            .AsNoTracking()
+            .ToList();
 
             foreach (var row in rows)
             {
-                Console.WriteLine(@$"
-                {row.Id} - {row.NomeUsuario} - {row.Email}");
+                Console.WriteLine(@$"{row?.Id} - {row?.NomeUsuario} - {row?.Email}");
             }
         }
 

@@ -1,6 +1,8 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BIManage.Models;
+
 
 namespace BIManager.Models
 {
@@ -34,9 +36,11 @@ namespace BIManager.Models
         [DefaultValue(true)]
         public bool SenhaAleatoria { get; set; }
 
+        public List<BaseDeDados>? BasesDeDados { get; set; }
+
+
         public DateTime CriadoEm { get; set; }
 
         public DateTime AtualizadoEm { get; set; }
-
     }
 }
