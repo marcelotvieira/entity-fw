@@ -53,6 +53,10 @@ namespace BIManager.Data.Mappings
                 .HasColumnType("SMALLDATETIME")
                 .HasDefaultValueSql("GETUTCDATE()");
 
+            builder.HasIndex(x => x.UrlConexao, "INDEX_BASEDEDADOS_URLCONEXAO")
+                .IsUnique();
+
+
         }
     }
 }

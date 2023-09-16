@@ -21,6 +21,9 @@ namespace BIManager.Data.Mappings
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(30);
 
+            builder.HasIndex(x => x.Nome, "INDEX_FUNCAO_NOME")
+                .IsUnique();
+
 
         }
     }

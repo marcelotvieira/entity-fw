@@ -57,6 +57,9 @@ namespace BIManager.Migrations
 
                     b.HasIndex("UsuarioId");
 
+                    b.HasIndex(new[] { "UrlConexao" }, "INDEX_BASEDEDADOS_URLCONEXAO")
+                        .IsUnique();
+
                     b.ToTable("BaseDeDados", (string)null);
                 });
 
@@ -110,6 +113,9 @@ namespace BIManager.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex(new[] { "Nome" }, "INDEX_FUNCAO_NOME")
+                        .IsUnique();
+
                     b.ToTable("Funcao", (string)null);
                 });
 
@@ -155,6 +161,9 @@ namespace BIManager.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FuncaoId");
+
+                    b.HasIndex(new[] { "Email" }, "INDEX_USUARIO_EMAIL")
+                        .IsUnique();
 
                     b.ToTable("Usuario", (string)null);
                 });

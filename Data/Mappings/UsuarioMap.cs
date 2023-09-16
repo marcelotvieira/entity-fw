@@ -55,6 +55,11 @@ namespace BIManager.Data.Mappings
                 .HasConstraintName("USUARIO_BASES_DE_DADOS")
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasIndex(x => x.Email, "INDEX_USUARIO_EMAIL")
+                .IsUnique();
+
+
+
         }
     }
 }

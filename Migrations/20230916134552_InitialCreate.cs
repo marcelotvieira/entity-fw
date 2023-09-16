@@ -111,6 +111,12 @@ namespace BIManager.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "INDEX_BASEDEDADOS_URLCONEXAO",
+                table: "BaseDeDados",
+                column: "UrlConexao",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BaseDeDados_UsuarioId",
                 table: "BaseDeDados",
                 column: "UsuarioId");
@@ -119,6 +125,18 @@ namespace BIManager.Migrations
                 name: "IX_Consultas_BaseDeDados_ConsultaID",
                 table: "Consultas_BaseDeDados",
                 column: "ConsultaID");
+
+            migrationBuilder.CreateIndex(
+                name: "INDEX_FUNCAO_NOME",
+                table: "Funcao",
+                column: "Nome",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "INDEX_USUARIO_EMAIL",
+                table: "Usuario",
+                column: "Email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_FuncaoId",
